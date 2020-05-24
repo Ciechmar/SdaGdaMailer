@@ -63,12 +63,12 @@ public class UserInterface {
             }
 
             case 5 : {
-
-
+                System.out.println("Wysyłam zaległe maile");
+                sendEmail(mailList);
                 break;
             }
             default:
-                System.out.println("Wybierz 1 lub 2");
+                System.out.println("Wybierz opcje : 1 - 5");
         }
 
     }
@@ -90,6 +90,14 @@ public class UserInterface {
         Email email = new Email(mailSubjectAndContent.getAdress(), mailSubjectAndContent.getSubject(), mailSubjectAndContent.getContent());
         Thread thread = new Thread(() -> mailService.sendEmail(email));
         thread.start();
+    }
+
+    private void sendEmail(List <MailSubjectAndContent> maillist) {
+        for (MailSubjectAndContent mailFromList : maillist) {
+            Email email = new Email(mailFromList.getAdress(), mailFromList.getSubject(), mailFromList.getContent());
+            Thread thread = new Thread(() -> mailService.sendEmail(email));
+            thread.start();
+        }
     }
 
     public void start(Scanner scanner) {
