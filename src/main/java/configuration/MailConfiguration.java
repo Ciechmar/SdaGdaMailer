@@ -13,6 +13,7 @@ public class MailConfiguration {
     private String username;
     private String password;
 
+
     public MailConfiguration() {
         prepareConfiguration();
 
